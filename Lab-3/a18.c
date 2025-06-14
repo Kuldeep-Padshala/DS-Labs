@@ -1,3 +1,5 @@
+// calculate average of first n numbers
+
 #include<stdio.h>
 
 int main() {
@@ -21,6 +23,5 @@ int main() {
     float avg = (float)sum/n;
     printf("Avg is %f",avg);
 
-    
     return 0;
 }

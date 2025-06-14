@@ -1,3 +1,5 @@
+// calculate sum of numbers from m to n
+
 #include<stdio.h>
 
 int main() {

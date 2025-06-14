@@ -1,6 +1,8 @@
+//leap year
+
 #include<stdio.h>
 
-int main() {     //leap year
+int main() {
 
     int y;
     printf("Enter a year: ");

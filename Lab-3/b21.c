@@ -1,3 +1,5 @@
+// 1st number with 2nd number in an array and print its index and final array
+
 #include<stdio.h>
 
 int main() {

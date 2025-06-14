@@ -1,3 +1,5 @@
+// insert a number at a given location in an array
+
 #include<stdio.h>
 
 int main() {
@@ -32,7 +34,7 @@ int main() {
         int temp2;
         arr[pos] = num;
 
-        for(int i=(pos+1);i<n+1;i++){
+        for(int i=(pos+1);i<n+1;i++){    //also be done without temporary variable by iterating from n to pos+1
             temp2 = arr[i];
             arr[i] = temp;
             temp = temp2;

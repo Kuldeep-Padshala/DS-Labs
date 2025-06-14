@@ -1,3 +1,5 @@
+// days into year, week & days
+
 #include<stdio.h>
 
 int main() {

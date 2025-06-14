@@ -1,3 +1,5 @@
+// smallest number & the largest number
+
 #include<stdio.h>
 
 int main() {

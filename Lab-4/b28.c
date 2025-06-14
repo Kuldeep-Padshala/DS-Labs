@@ -1,3 +1,5 @@
+// delete duplicate numbers from an array
+
 #include<stdio.h>
 
 void deleteElement(int arr[], int n, int pos) {

@@ -1,3 +1,5 @@
+// merge two unsorted arrays
+
 #include<stdio.h>
 
 int main() {

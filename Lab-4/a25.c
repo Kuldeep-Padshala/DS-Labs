@@ -1,3 +1,5 @@
+// delete a number from a given location in an array
+
 #include<stdio.h>
 
 int main() {

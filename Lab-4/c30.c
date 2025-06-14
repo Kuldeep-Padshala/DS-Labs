@@ -1,3 +1,5 @@
+// replace lowercase characters by uppercase & vice-versa
+
 #include<stdio.h>
 
 int main() {

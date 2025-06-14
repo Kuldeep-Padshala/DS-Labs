@@ -1,3 +1,5 @@
+// Armstrong number from 1 to 1000
+
 #include<stdio.h>
 
 int power(int base, int exp) {

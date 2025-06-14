@@ -1,3 +1,5 @@
+// prime numbers between given interval.
+
 #include<stdio.h>
 
 int main() {
