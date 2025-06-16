@@ -20,7 +20,6 @@ int main() {
 
     srand(time(NULL)); 
     int random = rand() % n;
-    printf("%d", random);
 
     printf("Random name: %s\n", arr[random]);
 
@@ -52,6 +51,7 @@ int main() {
     if(sum==len){
         printf("Word entered is an anagram of given Word\n");
     }
+
     else{
         printf("Word entered is not an anagram of given Word\n");
     }
