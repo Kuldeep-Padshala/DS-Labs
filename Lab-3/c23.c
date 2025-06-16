@@ -31,7 +31,5 @@ int main(){
         printf("%s\n", arr[i]);
     }
 
-
-
     return 0;
 }
