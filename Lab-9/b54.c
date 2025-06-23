@@ -17,8 +17,9 @@ void main(){
 
     int len = strlen(c);
     int isPalindrome = 1;
+    
     for(int i = 0; i < len / 2; i++) {
-        if(c[i] != c[len - i - 1]) {
+        if(c[i] != c[len - i - 1]) { // also use *(c + i) != *(c + len - i - 1)
             isPalindrome = 0;
             break;
         }
@@ -26,7 +27,8 @@ void main(){
 
     if(isPalindrome) {
         printf("The string is a palindrome.\n");
-    } else {
+    } 
+    else {
         printf("The string is not a palindrome.\n");
     }
     free(c);

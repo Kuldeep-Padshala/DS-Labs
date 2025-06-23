@@ -1,0 +1,139 @@
+// WAP to check whether 2 singly linked lists are same or not.
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node {
+    int info;
+    struct Node *next;
+};
+
+void display(struct Node* *head) {
+
+    struct Node* curr = *head;
+
+    if (curr == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    printf("List: ");
+    while (curr != NULL) {
+        printf("%d -> ", curr->info);
+        curr = curr->next;
+    }
+    printf("NULL\n");
+}
+
+void insertAtFront(struct Node* *head, int x) {
+
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+
+    newNode->info = x;
+    newNode->next = *head;
+    *head = newNode;
+
+}
+
+void insertAtEnd(struct Node* *head, int x) {
+
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->info = x;
+    newNode->next = NULL;
+
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+
+    struct Node* curr = *head;
+    while (curr->next != NULL) {
+        curr = curr->next;
+    }
+
+    curr->next = newNode;
+
+}
+
+void deleteheadNode(struct Node* *head) {
+
+    if (*head == NULL) {
+        printf("List is empty. Cannot delete.\n");
+        return;
+    }
+
+    struct Node* temp = *head;
+    *head = (*head) -> next;
+    free(temp);
+
+}
+
+void deleteLastNode(struct Node* *head) {
+
+    if (*head == NULL) {
+        printf("List is empty. Cannot delete.\n");
+        return;
+    }
+
+    if ((*head) -> next == NULL) {
+        free(*head);
+        *head = NULL;
+        return;
+    }
+
+    struct Node* curr = *head;
+    while (curr->next->next != NULL) {
+        curr = curr->next;
+    }
+    curr->next = NULL;
+    free(curr->next);
+
+}
+
+void main(){
+
+    // struct Node* n1 = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* n1 = NULL;
+    struct Node* n2 = NULL;
+
+    insertAtEnd(&n1, 1);
+    insertAtEnd(&n1, 3);
+    insertAtEnd(&n1, 5);
+    insertAtEnd(&n1, 7);
+    insertAtEnd(&n1, 9);
+    display(&n1);
+
+    insertAtEnd(&n2, 1);
+    insertAtEnd(&n2, 3);
+    insertAtEnd(&n2, 5);
+    insertAtEnd(&n2, 7);
+    insertAtEnd(&n2, 8);
+    display(&n2);
+
+    struct Node* curr1 = n1;
+    struct Node* curr2 = n2;
+
+    int isSame = 1;
+
+    while(curr1 != NULL && curr2 != NULL){
+
+        if(curr1->info != curr2->info){
+            isSame = 0;
+            break;
+        }
+        curr1 = curr1->next;
+        curr2 = curr2->next;
+    }
+
+    if((curr1 == NULL && curr2 != NULL) || (curr1 != NULL && curr2 == NULL)){
+        printf("Both Linkedlist are not equal");
+        return;
+    }
+    if(isSame){
+        printf("Both Linkedlist are same");
+    }
+    else{
+        printf("Both Linkedlist are not same");
+    }
+}
+
