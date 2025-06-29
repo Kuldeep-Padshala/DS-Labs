@@ -90,28 +90,10 @@ void deleteLastNode(struct Node* *head) {
 
 }
 
-void main(){
+int isSameFun(struct Node* *head1,struct Node* *head2){
 
-    // struct Node* n1 = (struct Node*)malloc(sizeof(struct Node));
-    struct Node* n1 = NULL;
-    struct Node* n2 = NULL;
-
-    insertAtEnd(&n1, 1);
-    insertAtEnd(&n1, 3);
-    insertAtEnd(&n1, 5);
-    insertAtEnd(&n1, 7);
-    insertAtEnd(&n1, 9);
-    display(&n1);
-
-    insertAtEnd(&n2, 1);
-    insertAtEnd(&n2, 3);
-    insertAtEnd(&n2, 5);
-    insertAtEnd(&n2, 7);
-    insertAtEnd(&n2, 8);
-    display(&n2);
-
-    struct Node* curr1 = n1;
-    struct Node* curr2 = n2;
+    struct Node* curr1 = *head1;
+    struct Node* curr2 = *head2;
 
     int isSame = 1;
 
@@ -127,13 +109,40 @@ void main(){
 
     if((curr1 == NULL && curr2 != NULL) || (curr1 != NULL && curr2 == NULL)){
         printf("Both Linkedlist are not equal");
-        return;
+        return 0;
     }
+
     if(isSame){
         printf("Both Linkedlist are same");
     }
     else{
         printf("Both Linkedlist are not same");
     }
+    return isSame;
+}
+
+void main(){
+
+    // struct Node* *head1 = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* head1 = NULL;
+    struct Node* head2 = NULL;
+
+    insertAtEnd(&head1, 1);
+    insertAtEnd(&head1, 3);
+    insertAtEnd(&head1, 5);
+    insertAtEnd(&head1, 7);
+    insertAtEnd(&head1, 9);
+    display(&head1);
+
+    insertAtEnd(&head2, 1);
+    insertAtEnd(&head2, 3);
+    insertAtEnd(&head2, 5);
+    insertAtEnd(&head2, 7);
+    insertAtEnd(&head2, 8);
+    display(&head2);
+
+    int isSame = isSameFun(&head1, &head2);
+
+    
 }
 
