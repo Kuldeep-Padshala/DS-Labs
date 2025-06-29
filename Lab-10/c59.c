@@ -93,15 +93,23 @@ void deleteLastNode(struct Node* *head) {
 void main(){
 
     // struct Node* n1 = (struct Node*)malloc(sizeof(struct Node));
-    struct Node* n = NULL;
+    struct Node* head = NULL;
 
-    insertAtEnd(&n, 1);
-    insertAtEnd(&n, 1);
-    insertAtEnd(&n, 1);
-    insertAtEnd(&n, 1);
-    display(&n);
+    insertAtEnd(&head, 1);
+    insertAtEnd(&head, 1);
+    insertAtEnd(&head, 1);
+    insertAtEnd(&head, 2);
+    insertAtEnd(&head, 3);
+    insertAtEnd(&head, 3);
+    insertAtEnd(&head, 4);
+    insertAtEnd(&head, 5);
+    insertAtEnd(&head, 5);
+    insertAtEnd(&head, 5);
+    insertAtEnd(&head, 5);
+    insertAtEnd(&head, 6);
+    display(&head);
 
-    struct Node* curr = n;
+    struct Node* curr = head;
 
     while(curr->next != NULL){
 
@@ -116,7 +124,7 @@ void main(){
             curr = curr->next;
         }
     }
-    display(&n);
+    display(&head);
 
 }
 
