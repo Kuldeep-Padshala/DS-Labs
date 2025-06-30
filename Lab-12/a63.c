@@ -1,3 +1,5 @@
+// Write a program to copy a linked list.
+
 // WAP to check whether 2 singly linked lists are same or not.
 
 #include<stdio.h>
@@ -35,7 +37,7 @@ void insertAtFront(struct Node* head, int x) {
 
 }
 
-void insertAtEnd(struct Node* head, int x) {
+struct Node* insertAtEnd(struct Node* head, int x) {
 
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->info = x;
@@ -43,7 +45,7 @@ void insertAtEnd(struct Node* head, int x) {
 
     if (head == NULL) {
         head = newNode;
-        return;
+        return head;
     }
 
     struct Node* curr = head;
@@ -52,6 +54,7 @@ void insertAtEnd(struct Node* head, int x) {
     }
 
     curr->next = newNode;
+    return head;
 
 }
 
@@ -90,41 +93,41 @@ void deleteLastNode(struct Node* head) {
 
 }
 
+void copy(struct Node* head1, struct Node* head2){
+
+    struct Node* curr = head1;
+    struct Node* curr2 = head2;
+
+    while(curr != NULL){
+
+        curr2->info = curr->info;
+
+        if (curr->next != NULL) {
+            curr2->next = (struct Node*)malloc(sizeof(struct Node));
+        } else {
+            curr2->next = NULL;
+        }
+        curr = curr->next;
+        curr2 = curr2->next;
+    }
+    
+}
+
 void main(){
 
     // struct Node* n1 = (struct Node*)malloc(sizeof(struct Node));
-    struct Node* head = NULL;
+    struct Node* n1 = NULL;
+    struct Node* n2 = (struct Node*)malloc(sizeof(struct Node));
 
-    insertAtEnd(head, 1);
-    insertAtEnd(head, 1);
-    insertAtEnd(head, 1);
-    insertAtEnd(head, 2);
-    insertAtEnd(head, 3);
-    insertAtEnd(head, 3);
-    insertAtEnd(head, 4);
-    insertAtEnd(head, 5);
-    insertAtEnd(head, 5);
-    insertAtEnd(head, 5);
-    insertAtEnd(head, 5);
-    insertAtEnd(head, 6);
-    display(head);
+    n1 = insertAtEnd(n1, 1);
+    n1 = insertAtEnd(n1, 3);
+    n1 = insertAtEnd(n1, 5);
+    n1 = insertAtEnd(n1, 7);
+    n1 = insertAtEnd(n1, 9);
+    display(n1);
 
-    struct Node* curr = head;
+    copy(n1,n2);
 
-    while(curr->next != NULL){
-
-        if(curr->info == curr->next->info){
-
-            struct Node* temp = curr->next;
-            curr->next = temp->next;
-            free(temp);
-            continue;
-        }
-        else{
-            curr = curr->next;
-        }
-    }
-    display(head);
-
+    display(n2);
 }
 

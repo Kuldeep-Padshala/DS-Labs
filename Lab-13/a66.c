@@ -93,40 +93,54 @@ void deleteLastNode(struct Node* head) {
 
 }
 
-void copy(struct Node* head1, struct Node* head2){
+int countNodes(struct Node* head) {
 
-    struct Node* curr = head1;
-    struct Node* curr2 = head2;
+    int count = 0;
+    struct Node* curr = head;
 
-    while(curr != NULL){
-
-        curr2->info = curr->info;
-
-        if (curr->next != NULL) {
-            curr2->next = (struct Node*)malloc(sizeof(struct Node));
-        } else {
-            curr2->next = NULL;
-        }
+    while (curr != NULL) {
+        count++;
         curr = curr->next;
-        curr2 = curr2->next;
     }
+
+    return count;
 }
+
+void rev(struct Node* head){
+
+    for(struct Node* i=head ; i->next!=NULL ; i=i->next){
+        for(struct Node* j=head ; j->next!= NULL ; j=j->next){
+
+            if(j->info > j->next->info){
+                int temp = j->info;
+                j->info = j->next->info;
+                j->next->info = temp;
+            }
+        }
+    }
+
+}
+
+
 
 void main(){
 
-    // struct Node* n1 = (struct Node*)malloc(sizeof(struct Node));
-    struct Node* n1 = NULL;
-    struct Node* n2 = (struct Node*)malloc(sizeof(struct Node));
+    // struct Node* head = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* head = NULL;
 
-    n1 = insertAtEnd(n1, 1);
-    n1 = insertAtEnd(n1, 3);
-    n1 = insertAtEnd(n1, 5);
-    n1 = insertAtEnd(n1, 7);
-    n1 = insertAtEnd(n1, 9);
-    display(n1);
+    head = insertAtEnd(head, 9);
+    head = insertAtEnd(head, 11);
+    head = insertAtEnd(head, 13);
+    head = insertAtEnd(head, 15);
+    head = insertAtEnd(head, 17);
+    head = insertAtEnd(head, 1);
+    head = insertAtEnd(head, 3);
+    head = insertAtEnd(head, 5);
+    head = insertAtEnd(head, 7);
+    display(head);
 
-    copy(n1,n2);
+    rev(head);
 
-    display(n2);
+    display(head);
 }
 

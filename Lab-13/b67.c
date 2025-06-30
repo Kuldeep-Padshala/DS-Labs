@@ -1,3 +1,5 @@
+// Write a program to copy a linked list.
+
 // WAP to check whether 2 singly linked lists are same or not.
 
 #include<stdio.h>
@@ -35,7 +37,7 @@ void insertAtFront(struct Node* head, int x) {
 
 }
 
-void insertAtEnd(struct Node* head, int x) {
+struct Node* insertAtEnd(struct Node* head, int x) {
 
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->info = x;
@@ -43,7 +45,7 @@ void insertAtEnd(struct Node* head, int x) {
 
     if (head == NULL) {
         head = newNode;
-        return;
+        return head;
     }
 
     struct Node* curr = head;
@@ -52,6 +54,7 @@ void insertAtEnd(struct Node* head, int x) {
     }
 
     curr->next = newNode;
+    return head;
 
 }
 
@@ -90,41 +93,68 @@ void deleteLastNode(struct Node* head) {
 
 }
 
-void main(){
+int countNodes(struct Node* head) {
 
-    // struct Node* n1 = (struct Node*)malloc(sizeof(struct Node));
-    struct Node* head = NULL;
+    int count = 0;
+    struct Node* curr = head;
 
-    insertAtEnd(head, 1);
-    insertAtEnd(head, 1);
-    insertAtEnd(head, 1);
-    insertAtEnd(head, 2);
-    insertAtEnd(head, 3);
-    insertAtEnd(head, 3);
-    insertAtEnd(head, 4);
-    insertAtEnd(head, 5);
-    insertAtEnd(head, 5);
-    insertAtEnd(head, 5);
-    insertAtEnd(head, 5);
-    insertAtEnd(head, 6);
-    display(head);
+    while (curr != NULL) {
+        count++;
+        curr = curr->next;
+    }
+
+    return count;
+}
+
+int getGCD(int a, int b) {
+    
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+
+void insertGCD(struct Node* head){
 
     struct Node* curr = head;
+    if(curr == NULL){
+        return;
+    }
 
     while(curr->next != NULL){
 
-        if(curr->info == curr->next->info){
+        struct Node* temp = curr->next;
+        int gcd = getGCD(curr->info, temp->info);
+        struct Node* temp2 = (struct Node*)malloc(sizeof(struct Node));
 
-            struct Node* temp = curr->next;
-            curr->next = temp->next;
-            free(temp);
-            continue;
-        }
-        else{
-            curr = curr->next;
-        }
+        temp2->info = gcd;
+        temp2->next = temp;
+        curr->next = temp2;
+
+        curr = curr->next->next;
     }
+}
+
+
+
+void main(){
+
+    // struct Node* head = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* head = NULL;
+
+    head = insertAtEnd(head, 6);
+    head = insertAtEnd(head, 12);
+    head = insertAtEnd(head, 16);
+    head = insertAtEnd(head, 25);
+    head = insertAtEnd(head, 5);
+    
     display(head);
 
+    insertGCD(head);
+
+    display(head);
 }
 
