@@ -138,8 +138,6 @@ void insertGCD(struct Node* head){
     }
 }
 
-
-
 void main(){
 
     // struct Node* head = (struct Node*)malloc(sizeof(struct Node));
