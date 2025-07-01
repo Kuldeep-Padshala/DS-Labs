@@ -106,19 +106,72 @@ int countNodes(struct Node* head) {
     return count;
 }
 
-void rev(struct Node* head){
 
-    for(struct Node* i=head ; i->next!=NULL ; i=i->next){
-        for(struct Node* j=head ; j->next!= NULL ; j=j->next){
+struct Node* swapKthNode(struct Node* head, struct Node* curr, struct Node* curr2){
 
-            if(j->info > j->next->info){
-                int temp = j->info;
-                j->info = j->next->info;
-                j->next->info = temp;
-            }
-        }
+     if (curr == curr2) return head;
+    struct Node* temp1 = (curr == NULL) ? head : curr->next;
+    struct Node* temp2 = (curr2 == NULL) ? head : curr2->next;
+
+    if (temp1 == NULL || temp2 == NULL) return head;
+
+    struct Node* forw1 = temp1->next;
+    struct Node* forw2 = temp2->next;
+
+    temp1->next = forw2;
+    temp2->next = forw1;
+
+    if (curr != NULL){
+        curr->next = temp2;
+    }
+    else{
+        head = temp2;
     }
 
+    if (curr2 != NULL){
+        curr2->next = temp1;
+    }
+    else{
+        head = temp1;
+    }
+
+    if (temp1 == curr2) {  // temp1 right before temp2
+        temp2->next = temp1;
+        temp1->next = forw2;
+    } else if (temp2 == curr) { // temp2 right before temp1
+        temp1->next = temp2;
+        temp2->next = forw1;
+    } else {
+        temp1->next = forw2;
+        temp2->next = forw1;
+    }
+    return head;
+}
+struct Node* sort(struct Node* head){
+
+    struct Node* curr = head;
+    struct Node* i, *j;
+    int min;
+    struct Node* temp, *jp;
+    struct Node* ip = NULL;
+
+    for(i=head ; i->next->next != NULL; i = i->next){
+
+        min = i->next->info;
+
+        for(jp = i,j=i->next ; j->next != NULL; jp = jp->next,j = j->next ){
+
+            if(j->info <= min){
+                min = j->info;
+                temp = jp;
+            }
+        }
+        if(min< i->info){
+            head = swapKthNode(head, ip, temp);
+        }
+        ip = i;
+    }
+    return head;
 }
 
 
@@ -139,7 +192,7 @@ void main(){
     head = insertAtEnd(head, 7);
     display(head);
 
-    rev(head);
+    head = sort(head);
 
     display(head);
 }
