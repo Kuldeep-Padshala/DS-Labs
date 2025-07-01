@@ -115,9 +115,26 @@ struct Node* swapKthNode(struct Node* head, struct Node* curr, struct Node* curr
 
     if (temp1 == NULL || temp2 == NULL) return head;
 
+    
+    if (temp1 == curr2) {  // temp1 just before temp2
+        struct Node* forw = temp2->next;
+        if (curr) curr->next = temp2;
+        else head = temp2;
+        temp2->next = temp1;
+        temp1->next = forw;
+        return head;
+    }
+    else if (temp2 == curr) {  // temp2 just before temp1
+        struct Node* forw = temp1->next;
+        if (curr2) curr2->next = temp1;
+        else head = temp1;
+        temp1->next = temp2;
+        temp2->next = forw;
+        return head;
+    }
+    
     struct Node* forw1 = temp1->next;
     struct Node* forw2 = temp2->next;
-
     temp1->next = forw2;
     temp2->next = forw1;
 
@@ -135,18 +152,12 @@ struct Node* swapKthNode(struct Node* head, struct Node* curr, struct Node* curr
         head = temp1;
     }
 
-    if (temp1 == curr2) {  // temp1 right before temp2
-        temp2->next = temp1;
-        temp1->next = forw2;
-    } else if (temp2 == curr) { // temp2 right before temp1
-        temp1->next = temp2;
-        temp2->next = forw1;
-    } else {
-        temp1->next = forw2;
-        temp2->next = forw1;
-    }
+    temp1->next = forw2;
+    temp2->next = forw1;
+
     return head;
 }
+
 struct Node* sort(struct Node* head){
 
     struct Node* curr = head;
@@ -155,19 +166,24 @@ struct Node* sort(struct Node* head){
     struct Node* temp, *jp;
     struct Node* ip = NULL;
 
-    for(i=head ; i->next->next != NULL; i = i->next){
+    for(i = head ; i != NULL && i->next != NULL ; i = i->next){
 
-        min = i->next->info;
-
-        for(jp = i,j=i->next ; j->next != NULL; jp = jp->next,j = j->next ){
-
-            if(j->info <= min){
+        min = i->info;
+        temp = ip;   // backup previous of i
+        for(jp = i, j = i->next ; j != NULL ; jp = jp->next, j = j->next){
+            if(j->info < min){
                 min = j->info;
                 temp = jp;
             }
         }
-        if(min< i->info){
+
+        if(min < i->info){
             head = swapKthNode(head, ip, temp);
+            // after swap, update `i` properly
+            if (ip == NULL)
+                i = head;
+            else
+                i = ip->next;
         }
         ip = i;
     }
