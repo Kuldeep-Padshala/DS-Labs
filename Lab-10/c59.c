@@ -8,9 +8,9 @@ struct Node {
     struct Node *next;
 };
 
-void display(struct Node* head) {
+void display(struct Node* *head) {
 
-    struct Node* curr = head;
+    struct Node* curr = *head;
 
     if (curr == NULL) {
         printf("List is empty.\n");
@@ -35,18 +35,18 @@ void insertAtFront(struct Node* head, int x) {
 
 }
 
-void insertAtEnd(struct Node* head, int x) {
+void insertAtEnd(struct Node* *head, int x) {
 
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->info = x;
     newNode->next = NULL;
 
-    if (head == NULL) {
-        head = newNode;
+    if (*head == NULL) {
+        *head = newNode;
         return;
     }
 
-    struct Node* curr = head;
+    struct Node* curr = *head;
     while (curr->next != NULL) {
         curr = curr->next;
     }
@@ -90,26 +90,12 @@ void deleteLastNode(struct Node* head) {
 
 }
 
-void main(){
+void skipDuplicates(struct Node* *head){
 
-    // struct Node* n1 = (struct Node*)malloc(sizeof(struct Node));
-    struct Node* head = NULL;
-
-    insertAtEnd(head, 1);
-    insertAtEnd(head, 1);
-    insertAtEnd(head, 1);
-    insertAtEnd(head, 2);
-    insertAtEnd(head, 3);
-    insertAtEnd(head, 3);
-    insertAtEnd(head, 4);
-    insertAtEnd(head, 5);
-    insertAtEnd(head, 5);
-    insertAtEnd(head, 5);
-    insertAtEnd(head, 5);
-    insertAtEnd(head, 6);
-    display(head);
-
-    struct Node* curr = head;
+    if(*head == NULL){
+        return;
+    }
+    struct Node* curr = *head;
 
     while(curr->next != NULL){
 
@@ -124,7 +110,28 @@ void main(){
             curr = curr->next;
         }
     }
-    display(head);
+}
+void main(){
+
+    // struct Node* n1 = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* head = NULL;
+
+    insertAtEnd(&head, 1);
+    insertAtEnd(&head, 1);
+    insertAtEnd(&head, 1);
+    insertAtEnd(&head, 2);
+    insertAtEnd(&head, 3);
+    insertAtEnd(&head, 3);
+    insertAtEnd(&head, 4);
+    insertAtEnd(&head, 5);
+    insertAtEnd(&head, 5);
+    insertAtEnd(&head, 5);
+    insertAtEnd(&head, 5);
+    insertAtEnd(&head, 6);
+    display(&head);
+
+    skipDuplicates(&head);
+    display(&head);
 
 }
 
