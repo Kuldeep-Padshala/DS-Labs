@@ -8,8 +8,8 @@ struct Node {
     struct Node *next;
 };
 
-void display(struct Node* head) {
 
+void display(struct Node* head) {
     struct Node* curr = head;
 
     if (curr == NULL) {
@@ -23,16 +23,6 @@ void display(struct Node* head) {
         curr = curr->next;
     }
     printf("NULL\n");
-}
-
-void insertAtFront(struct Node* head, int x) {
-
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-
-    newNode->info = x;
-    newNode->next = head;
-    head = newNode;
-
 }
 
 struct Node* insertAtEnd(struct Node* head, int x) {
@@ -53,41 +43,6 @@ struct Node* insertAtEnd(struct Node* head, int x) {
 
     curr->next = newNode;
     return head;
-
-}
-
-void deleteheadNode(struct Node* head) {
-
-    if (head == NULL) {
-        printf("List is empty. Cannot delete.\n");
-        return;
-    }
-
-    struct Node* temp = head;
-    head = (head) -> next;
-    free(temp);
-
-}
-
-void deleteLastNode(struct Node* head) {
-
-    if (head == NULL) {
-        printf("List is empty. Cannot delete.\n");
-        return;
-    }
-
-    if ((head) -> next == NULL) {
-        free(head);
-        head = NULL;
-        return;
-    }
-
-    struct Node* curr = head;
-    while (curr->next->next != NULL) {
-        curr = curr->next;
-    }
-    curr->next = NULL;
-    free(curr->next);
 
 }
 
