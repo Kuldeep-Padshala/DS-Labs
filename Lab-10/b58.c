@@ -25,16 +25,6 @@ void display(struct Node* *head) {
     printf("NULL\n");
 }
 
-void insertAtFront(struct Node* *head, int x) {
-
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-
-    newNode->info = x;
-    newNode->next = *head;
-    *head = newNode;
-
-}
-
 void insertAtEnd(struct Node* *head, int x) {
 
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
@@ -52,41 +42,6 @@ void insertAtEnd(struct Node* *head, int x) {
     }
 
     curr->next = newNode;
-
-}
-
-void deleteheadNode(struct Node* *head) {
-
-    if (*head == NULL) {
-        printf("List is empty. Cannot delete.\n");
-        return;
-    }
-
-    struct Node* temp = *head;
-    *head = (*head) -> next;
-    free(temp);
-
-}
-
-void deleteLastNode(struct Node* *head) {
-
-    if (*head == NULL) {
-        printf("List is empty. Cannot delete.\n");
-        return;
-    }
-
-    if ((*head) -> next == NULL) {
-        free(*head);
-        *head = NULL;
-        return;
-    }
-
-    struct Node* curr = *head;
-    while (curr->next->next != NULL) {
-        curr = curr->next;
-    }
-    curr->next = NULL;
-    free(curr->next);
 
 }
 
