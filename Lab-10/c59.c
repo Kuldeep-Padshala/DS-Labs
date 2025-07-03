@@ -111,6 +111,8 @@ void skipDuplicates(struct Node* *head){
         }
     }
 }
+
+
 void main(){
 
     // struct Node* n1 = (struct Node*)malloc(sizeof(struct Node));
