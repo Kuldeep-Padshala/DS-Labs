@@ -1,6 +1,4 @@
-// Write a program to copy a linked list.
-
-// WAP to check whether 2 singly linked lists are same or not.
+// Write a program to swap two consecutive nodes in the linked list
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -27,16 +25,6 @@ void display(struct Node* head) {
     printf("NULL\n");
 }
 
-void insertAtFront(struct Node* head, int x) {
-
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-
-    newNode->info = x;
-    newNode->next = head;
-    head = newNode;
-
-}
-
 struct Node* insertAtEnd(struct Node* head, int x) {
 
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
@@ -56,54 +44,6 @@ struct Node* insertAtEnd(struct Node* head, int x) {
     curr->next = newNode;
     return head;
 
-}
-
-void deleteheadNode(struct Node* head) {
-
-    if (head == NULL) {
-        printf("List is empty. Cannot delete.\n");
-        return;
-    }
-
-    struct Node* temp = head;
-    head = (head) -> next;
-    free(temp);
-
-}
-
-void deleteLastNode(struct Node* head) {
-
-    if (head == NULL) {
-        printf("List is empty. Cannot delete.\n");
-        return;
-    }
-
-    if ((head) -> next == NULL) {
-        free(head);
-        head = NULL;
-        return;
-    }
-
-    struct Node* curr = head;
-    while (curr->next->next != NULL) {
-        curr = curr->next;
-    }
-    curr->next = NULL;
-    free(curr->next);
-
-}
-
-int countNodes(struct Node* head) {
-
-    int count = 0;
-    struct Node* curr = head;
-
-    while (curr != NULL) {
-        count++;
-        curr = curr->next;
-    }
-
-    return count;
 }
 
 struct Node* swapFun(struct Node* head){
